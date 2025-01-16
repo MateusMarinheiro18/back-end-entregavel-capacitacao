@@ -8,7 +8,7 @@ from importlib import import_module
 
 dotenv.load_dotenv()
 
-connect(host=f"mongodb+srv://{os.getenv('MONGO_USER')}:{os.getenv('MONGO_PWD')}@clusteraula.0pv1o.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAula")
+connect(host=f"mongodb+srv://mateusmarinheiro2005:jdo45kRdwnymxEnN@entregavel1.14ika.mongodb.net/?retryWrites=true&w=majority&appName=Entregavel1")
 
 app = FastAPI()
 
@@ -18,7 +18,6 @@ def test():
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],          # URL do front-end permitido
     allow_credentials=True,                  # Permitir envio de cookies ou headers de autenticação
     allow_methods=["*"],                     # Permitir todos os métodos HTTP (GET, POST, PUT, DELETE, etc.)
     allow_headers=["*"],                     # Permitir todos os headers
