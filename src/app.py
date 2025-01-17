@@ -18,10 +18,12 @@ def test():
 
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Certifique-se de que o front-end está permitido
     allow_credentials=True,                  # Permitir envio de cookies ou headers de autenticação
     allow_methods=["*"],                     # Permitir todos os métodos HTTP (GET, POST, PUT, DELETE, etc.)
     allow_headers=["*"],                     # Permitir todos os headers
 )
+
 
 # Obtém o diretório atual onde o arquivo app.py está localizado
 working_directory = os.path.dirname(os.path.abspath(__file__))

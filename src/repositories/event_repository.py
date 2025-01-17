@@ -38,3 +38,30 @@ class EventRepository:
         event_dict = event.to_mongo().to_dict()
         event_dict['_id'] = str(event_dict['_id'])
         return event_dict
+    
+    def get_all_events(self) -> List[dict]:
+        events = EventModel.objects()
+        events_dict = [event.to_mongo().to_dict() for event in events]
+        for event in events_dict:
+            event['_id'] = str(event['_id'])
+        return events_dict
+    
+    def update_event(self, event_id: str, data: dict) -> None:
+        event = EventModel.objects.with_id(event_id)
+        if not event:
+            return None
+        for k in data:
+            if (k in EventModel.get_normal_fields()):
+                event[k] = data[k]
+            elif (k in EventModel.sensivity_fields):
+                event[k] = SensivityField(fernet=self.fernet, data=data[k])
+        event.save()
+        return None
+    
+    def delete_event(self, event_id: str) -> None:
+        event = EventModel.objects.with_id(event_id)
+        if not event:
+            return None
+        event.delete()
+        return None
+    
