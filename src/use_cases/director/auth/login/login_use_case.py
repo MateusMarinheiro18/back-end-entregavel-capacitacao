@@ -29,4 +29,4 @@ class LoginUseCase:
         response.set_cookie(key="director_auth_token", value=f"Bearer {token}", httponly=True)
         
         response.status_code = 202
-        return {"status": "success", "message": "Acesso permitido"}
+        return {"status": "success", "message": "Acesso permitido", "token": token}

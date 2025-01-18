@@ -61,7 +61,9 @@ class EventRepository:
     def delete_event(self, event_id: str) -> None:
         event = EventModel.objects.with_id(event_id)
         if not event:
+            print("Event not found")
             return None
+        print("Event found")
         event.delete()
         return None
     
