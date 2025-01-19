@@ -8,6 +8,6 @@ router = APIRouter()
 event_repository = EventRepository()
 delete_event_use_case = DeleteEventUseCase(event_repository)
 
-@router.delete("/events/{event_id}")
+@router.delete("/event-delete/{event_id}")
 def delete_event(event_id: str, response: Response):
     return delete_event_use_case.execute(event_id, response)

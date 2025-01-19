@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException
-from use_cases.edit_event_use_case import EditEventUseCase
+from fastapi import APIRouter, Depends, HTTPException, Response
+from use_cases.event.edit_event.edit_event_use_case import EditEventUseCase
 from repositories.event_repository import EventRepository
-from dtos.edit_event_dto import EditEventDTO
+from use_cases.event.edit_event.edit_event_dto import EditEventDTO
 
 
 router = APIRouter()
@@ -10,12 +10,8 @@ router = APIRouter()
 event_repository = EventRepository()
 edit_event_use_case = EditEventUseCase(event_repository)
 
-@router.put("/events/{event_id}")
-def edit_event(event_id: str, event_data: EditEventDTO):
-    try:
-        result = edit_event_use_case.execute(event_id, event_data.dict())
-        return result
-    except HTTPException as e:
-        raise e
-    except Exception as e:
-        raise HTTPException(status_code=500, detail="Erro ao editar evento")
+@router.post("/event-edit/{event_id}")
+def edit_event(event_id: str, event_data: EditEventDTO, response: Response):
+    print('cheguei aqui')
+    result = edit_event_use_case.execute(event_id, event_data.dict())
+    return result

@@ -45,6 +45,9 @@ for route in routes:
         # Se o módulo possui um objeto 'router', inclui as rotas no aplicativo FastAPI
         if hasattr(module, 'router'):
             app.include_router(module.router)
+
+        print(f"Importando rotas do módulo: {module_name}")
+
     except ModuleNotFoundError as e:
         # Exibe uma mensagem de erro caso o módulo não seja encontrado
         print(f"Erro ao importar módulo {module_name}: {e}")

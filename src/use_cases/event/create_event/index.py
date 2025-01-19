@@ -7,6 +7,6 @@ router = APIRouter()
 
 create_event_use_case = CreateEventUseCase(EventRepository())
 
-@router.post("/event")
+@router.post("/event-create")
 def create_event(request: Request, response: Response, create_event_dto: CreateEventDTO):
     return create_event_use_case.execute(create_event_dto, response, request)

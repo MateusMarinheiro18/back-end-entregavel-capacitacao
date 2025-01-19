@@ -67,3 +67,11 @@ class EventRepository:
         event.delete()
         return None
     
+
+    def get_by_day_and_month(self, day: str, month: str) -> List[Event]:
+        """Filtra os eventos por dia e mês específicos."""
+        events = EventModel.objects(day=day, month=month)
+        events_dict = [event.to_mongo().to_dict() for event in events]
+        for event in events_dict:
+            event['_id'] = str(event['_id'])
+        return events_dict

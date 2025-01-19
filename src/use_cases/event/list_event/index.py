@@ -6,6 +6,6 @@ router = APIRouter()
 
 list_event_use_case = ListEventUseCase(EventRepository())
 
-@router.get("/event")
+@router.get("/event-list")
 def list_event(response: Response, request: Request):
     return list_event_use_case.execute(response, request)
